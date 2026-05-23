@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <link rel="preload" href="images/baby.jpg" as="image">
+    <link rel="preload" href="images/bath.jpg" as="image">
+    <link rel="preload" href="images/bear.jpg" as="image">
+    <link rel="preload" href="images/beef noodles.jpg" as="image">
+    <link rel="preload" href="images/bird.jpg" as="image">
+    <link rel="preload" href="images/braised_pork_rice.jpg" as="image">
+    <link rel="preload" href="images/candied_haws.jpg" as="image">
+    <link rel="preload" href="images/deer.jpg" as="image">
+    <link rel="preload" href="images/dragon_boat.jpg" as="image">
+    <link rel="preload" href="images/ear.jpg" as="image">
+    <link rel="preload" href="images/fish.jpg" as="image">
+    <link rel="preload" href="images/guava.jpg" as="image">
+    <link rel="preload" href="images/lychee.jpg" as="image">
+    <link rel="preload" href="images/mango.jpg" as="image">
+    <link rel="preload" href="images/marry.jpg" as="image">
+    <link rel="preload" href="images/meatballs.jpg" as="image">
+    <link rel="preload" href="images/monkey.jpg" as="image">
+    <link rel="preload" href="images/moon.jpg" as="image">
+    <link rel="preload" href="images/new year's eve dinner.jpg" as="image">
+    <link rel="preload" href="images/pangolin.jpg" as="image">
+    <link rel="preload" href="images/pen.jpg" as="image">
+    <link rel="preload" href="images/pineapple.jpg" as="image">
+    <link rel="preload" href="images/pomelo.jpg" as="image">
+    <link rel="preload" href="images/red.jpg" as="image">
+    <link rel="preload" href="images/soy_milk_and_fried_dough_sticks.jpg" as="image">
+    <link rel="preload" href="images/spring_couplet.jpg" as="image">
+    <link rel="preload" href="images/sweet_dumplings.jpg" as="image">
+    <link rel="preload" href="images/watermelon.jpg" as="image">
+    <link rel="preload" href="images/wax_apple.jpg" as="image">
+    <link rel="preload" href="images/zongzi.jpg" as="image">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>智學APP 0323</title>
+    <style>
+        :root { --pink: #6538df87; --blue: #8EACCD; --bg: #FFF9F0; --dark-blue: #083061e9;--soft-shadow: 0 8px 30px rgba(0,0,0,0.08)}
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { margin: 0; background: #2c2c2c; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;transform: scale(2.5)}
+        #app-container { width: 1920px; height: 1080px; background: var(--bg); position: relative; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 40px rgba(0,0,0,0.3);border-radius: 40px }
+        .page { display: none; width: 100%; height: 100%; padding: 25px; flex-direction: column; }
+        .page.active { display: flex; }
+        .content-wrapper { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;padding-top: 0px; }
+        .header { text-align: center; color: #083061e9; font-size: 42px; font-weight: 800; margin-top: 30px; margin-bottom: 5px;letter-spacing: 1px }
+        .math-q-number {font-size: 38px;color: var(--blue);font-weight: bold;margin-bottom: 10px;width: 90%;text-align: center;}
+        .sub-header { font-size: 46px; font-weight: bold; color: #083061e9; margin-bottom: 30px; text-align: center; }
+        .case-input { width: 85%; padding: 18px; font-size: 36px; border: 2px solid var(--blue); border-radius: 12px; text-align: center; margin-top: 20px; background-color: #ffffff; color: #333; }
+        .btn-next { width: 75%; align-self: center; background:linear-gradient(135deg, #8EACCD, #6538df87); color: white; border: none; padding: 20px; border-radius: 20px; font-size: 32px; font-weight: bold; cursor: pointer; margin-top: 20px; margin-bottom: 60px;box-shadow: 0 4px 15px rgba(101, 56, 223, 0.3);transition: transform 0.2s }
+        .btn-next:active { transform: scale(0.95); }
+        .btn-level, .btn-lang { width: 65%; background: white; border: 3px solid var(--blue); color: var(--blue); padding: 20px; border-radius: 20px; font-size: 38px; font-weight: bold; cursor: pointer; margin-bottom: 20px; }
+        .opt-btn { width: 80%; background: white; border: 2px solid #f0f0f0; padding: 15px; border-radius: 18px; font-size: 38px; font-weight: bold; cursor: pointer; margin-bottom: 12px;color: #444;transition: all 0.2s }
+        .opt-btn.selected { background: var(--blue); color: white; border-color: var(--blue); box-shadow: 0 4px 12px rgba(142, 172, 205, 0.4)}
+        .q-card { background: white; border-radius: 24px; padding: 30px 20px; box-shadow: var(--soft-shadow); text-align: center; margin-bottom: 25px; width: 92%; border: 1px solid rgba(142, 172, 205, 0.2)}
+        .q-text { font-size: 55px; font-weight: bold; color: #333; }
+        #score-page .content-wrapper {display: flex;flex-direction: column;justify-content: center;align-items: center;padding-top: 0}
+        #score-page #score-title {margin-bottom: 10px}
+        #score-val {margin: 10px 0 !important}
+        #img-container {width: 350px; height: 350px; margin: 0px auto 0 auto; border-radius: 24px; box-shadow: var(--soft-shadow);background: white;padding: 10px}
+        .q-img { max-width: 100%; max-height: 100%; object-fit: contain; display: block;}
+        .reading-box { font-size: 42px; line-height: 1.2; text-align: center; font-weight: bold; color: #333; white-space: pre-line; margin-top: -10px;}
+        .judge-btns {display: flex; justify-content: center; gap: 100px; margin-top: 50px; margin-bottom: 30px; width: 100%;position: relative; z-index: 10}
+        .judge-icon {font-size: 85px;cursor: pointer; filter: grayscale(1); background: #ffffff;border: 2px solid #e0e0e0; border-radius: 20px;padding: 15px 45px; box-shadow: 0 6px 15px rgba(0,0,0,0.05); transition: all 0.2s ease;}
+        .judge-icon.active {filter: grayscale(0); transform: scale(1.15); border-color: var(--blue);background: #f0f7ff;}
+        #read-content {width: 100%;text-align: center; font-weight: bold; color: #333; white-space: pre-line; transition: all 0.3s ease;margin-top: 10px}
+        #p-thanks .content-wrapper {justify-content: center;align-items: center;padding-top: 0;text-align: center;}
+        #p-thanks h1 {margin-bottom: 20px}
+        #read-title { font-size: 32px; color: var(--blue); font-weight: bold; margin-bottom: 10px; text-align: center; line-height: 1.4; }
+        .sub-q-number { font-size: 36px; color: var(--blue); display: block; margin-top: 5px; }
+        .score-btn-container { width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    <div id="p-start" class="page active">
+        <div class="header">國立陽明交通大學</div>
+        <div class="content-wrapper">
+            <h1 style="font-size: 70px; color: #083061e9; margin: 0;">智學APP</h1>
+            <p style="font-size: 32px; color: #6538df87; font-weight: bold; margin-top: 10px; margin-bottom: 0;">朗讀教學版</p>
+            <p style="font-size: 30px; margin-top: 40px; margin-bottom: 10px; color:#083061e9">個案編號</p>
+            <input type="text" id="caseName" class="case-input">
+        </div>
+        <button class="btn-next" onclick="goToReadingStart()">開始測驗</button>
+    </div>
+
+    <div id="quiz-page" class="page">
+        <div class="header" id="quiz-header">測驗</div>
+        <div class="content-wrapper">
+            <div id="read-display" style="display:flex; width: 100%; flex-direction:column; align-items:center;">
+                <div id="read-title" style="font-size:24px; color:var(--blue); font-weight: bold; margin-bottom: 10px;"></div>
+                <div id="img-container"><img id="q-img-src" class="q-img" src="" alt="測驗圖片"></div>
+                <div id="read-content" style="font-size: 32px; font-weight: bold; text-align: center;"></div>
+                <div class="judge-btns">
+                    <button class="judge-icon" onclick="setScore(true)">👍</button>
+                    <button class="judge-icon" onclick="setScore(false)">😊</button>
+                </div>
+            </div>
+        </div>
+        <button class="btn-next" id="main-next-btn" onclick="handleNext()">下一步</button>
+    </div>
+
+    <div id="score-page" class="page">
+        <div class="content-wrapper">
+            <h2 id="score-title" style="font-size:32px;">結算</h2>
+            <div id="score-val" style="font-size:80px; color:var(--pink); font-weight:bold; margin: 20px 0;">0</div>
+            <div id="time-val" style="font-size:24px; color:#666; font-weight:bold;">時間：0秒</div>
+        </div>
+        <div class="score-btn-container">
+            <button class="btn-next" id="score-finish-btn" onclick="goToThanksPage()">完成測驗</button>
+            <button class="btn-next" id="score-replay-btn" style="margin-top: -20px;" onclick="replayQuiz()">再玩一次</button>
+        </div>
+    </div>
+
+    <div id="p-thanks" class="page">
+        <div class="content-wrapper">
+            <h1 style="font-size: 50px; color: var(--pink);">感謝參與</h1>
+            <p id="final-summary" style="font-size: 32px; color: #333; line-height: 1.6; text-align: center; margin-bottom: 20px; font-weight: bold;"></p>
+            <p style="font-size: 28px; color: #666; line-height: 1.6; text-align: center;">測驗已全部結束</p>
+        </div>
+        <button class="btn-next" onclick="location.reload()">回首頁</button>
+     </div>
+</div>
+
+<script>
+    function formatTimeDisplay(seconds) {
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        return m > 0 ? `${m}分${s}秒` : `${s}秒`;
+    }
+
+    const readingDB = {
+        festival: [{t:"貼春聯",img:"images/spring_couplet.jpg"},{t:"圍爐年夜飯",img:"images/new year's eve dinner.jpg"},{t:"划龍舟",img:"images/dragon_boat.jpg"},{t:"包/吃粽子",img:"images/zongzi.jpg"},{t:"賞月",img:"images/moon.jpg"},{t:"吃柚子",img:"images/pomelo.jpg"}],
+        fruit: [{t:"荔枝",img:"images/lychee.jpg"},{t:"芭樂",img:"images/guava.jpg"},{t:"芒果",img:"images/mango.jpg"},{t:"蓮霧",img:"images/wax_apple.jpg"},{t:"鳳梨",img:"images/pineapple.jpg"},{t:"西瓜",img:"images/watermelon.jpg"}],
+        food: [{t:"牛肉麵",img:"images/beef noodles.jpg"},{t:"肉圓",img:"images/meatballs.jpg"},{t:"滷肉飯",img:"images/braised_pork_rice.jpg"},{t:"豆漿油條",img:"images/soy_milk_and_fried_dough_sticks.jpg"},{t:"湯圓",img:"images/sweet_dumplings.jpg"},{t:"糖葫蘆",img:"images/candied_haws.jpg"}],
+        animal: [
+            {t:"台灣黑熊",img:"images/bear.jpg"},
+            {t:"台灣藍鵲",img:"images/bird.jpg"},
+            {t:"台灣獼猴",img:"images/monkey.jpg"},
+            {t:"櫻花鉤吻鮭",img:"images/fish.jpg"},
+            {t:"梅花鹿",img:"images/deer.jpg"},
+            {t:"穿山甲",img:"images/pangolin.jpg"}],
+        tradition: [
+            {t:"用手指月亮\n會被割耳朵",img:"images/ear.jpg"},
+            {t:"偷拔蔥 嫁好尪\n偷拔菜 嫁好婿",img:"images/marry.jpg"},
+            {t:"從懷孕肚型\n可以預測寶寶的性別",img:"images/baby.jpg"},
+            {t:"坐月子\n不能洗頭洗澡",img:"images/bath.jpg"},
+            {t:"用紅筆寫名字\n會折壽",img:"images/pen.jpg"},
+            {t:"賭博\n要穿紅內褲",img:"images/red.jpg"}
+        ]
+    };
+
+    let state = "FESTIVAL", currentIdx = 0, currentJudge = null;
+    let finalScores = { 
+        name: "", 
+        reading: 0, readingTime: ""
+    };
+    let startTime = 0;
+
+    function goToReadingStart() {
+        const name = document.getElementById('caseName').value;
+        if(!name) return alert("請輸入個案編號");
+        finalScores.name = name;
+        document.getElementById('p-start').style.display = 'none';
+        document.getElementById('quiz-page').style.display = 'flex';
+        state = "FESTIVAL"; 
+        currentIdx = 0;
+        finalScores.reading = 0;
+        startTime = Date.now();
+        loadReadingStep();
+    }
+
+    function loadReadingStep() {
+        currentJudge = null;
+        document.querySelectorAll('.judge-icon').forEach(i => i.classList.remove('active'));
+        
+        const title = document.getElementById('read-title');
+        const content = document.getElementById('read-content');
+        const imgCont = document.getElementById('img-container');
+        const img = document.getElementById('q-img-src');
+
+        imgCont.style.display = "flex";
+        content.style.fontSize = "32px";
+        content.style.marginTop = "10px";
+        content.style.lineHeight = "1.1";
+        content.style.padding = "0";
+
+        const qNumHTML = `<div style="font-size: 28px; color: var(--blue); margin-top: 6px; font-weight: bold;">第 ${currentIdx + 1} 題</div>`;
+
+        document.getElementById('quiz-header').innerText = "第一部分：朗讀";
+        
+        let data, catName;
+        if(state === "FESTIVAL") { catName = "節慶"; data = readingDB.festival[currentIdx]; }
+        else if(state === "FRUIT") { catName = "水果"; data = readingDB.fruit[currentIdx]; }
+        else if(state === "FOOD") { catName = "美食"; data = readingDB.food[currentIdx]; }
+        else if(state === "ANIMAL") { catName = "動物"; data = readingDB.animal[currentIdx]; } 
+        else if(state === "TRADITION") { catName = "民間傳說"; data = readingDB.tradition[currentIdx]; }
+        
+        title.innerHTML = `<div style="font-size: 32px;">${catName}</div>${qNumHTML}`;
+        img.src = data.img;
+        content.innerText = data.t;
+        content.style.marginTop = "10px"; 
+        content.style.fontSize = "34px";
+    }
+
+    function setScore(isCorrect) {
+        currentJudge = isCorrect;
+        const icons = document.querySelectorAll('.judge-icon');
+        icons[0].classList.toggle('active', isCorrect === true);
+        icons[1].classList.toggle('active', isCorrect === false);
+    }
+
+    function handleNext() {
+        if(currentJudge === null) return alert("請進行評分");
+        if(currentJudge) {
+            finalScores.reading++;
+        }
+        currentIdx++;
+
+        if(state === "FESTIVAL" && currentIdx >= 6) { state = "FRUIT"; currentIdx = 0; loadReadingStep(); }
+        else if(state === "FRUIT" && currentIdx >= 6) { state = "FOOD"; currentIdx = 0; loadReadingStep(); }
+        else if(state === "FOOD" && currentIdx >= 6) { state = "ANIMAL"; currentIdx = 0; loadReadingStep(); }
+        else if(state === "ANIMAL" && currentIdx >= 6) { state = "TRADITION"; currentIdx = 0; loadReadingStep(); }
+        else if(state === "TRADITION" && currentIdx >= 6) { 
+            showScorePage("朗感測驗得分", finalScores.reading, 30); 
+        }
+        else {
+            loadReadingStep();
+        }
+    }
+
+    function showScorePage(title, score, max) {
+        const endTime = Date.now();
+        const durationSeconds = Math.round((endTime - startTime) / 1000);
+        const timeStr = formatTimeDisplay(durationSeconds);
+       
+        finalScores.readingTime = timeStr; 
+        
+        document.getElementById('quiz-page').style.display = 'none';
+        document.getElementById('score-page').style.display = 'flex';
+        document.getElementById('score-title').innerText = title;
+        document.getElementById('score-val').innerText = `${score} / ${max}`;
+        document.getElementById('time-val').innerText = `耗時：${timeStr}`;
+    }
+
+    function goToThanksPage() {
+        document.getElementById('score-page').style.display = 'none';
+        document.getElementById('final-summary').innerText = `朗讀得分：${finalScores.reading} / 30\n總耗時：${finalScores.readingTime}`;
+        document.getElementById('p-thanks').style.display = 'flex';
+    }
+
+    function replayQuiz() {
+        finalScores.reading = 0;
+        finalScores.readingTime = "";
+        state = "FESTIVAL";
+        currentIdx = 0;
+        
+        document.getElementById('score-page').style.display = 'none';
+        document.getElementById('quiz-page').style.display = 'flex';
+        startTime = Date.now();
+        loadReadingStep();
+    }
+</script>
+</body>
+</html>
